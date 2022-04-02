@@ -1,25 +1,28 @@
 //IMPORTANDO MODULOS
 import { pintarTienda } from "./llenadoTienda.js";
 import {ampliarInformacion} from "./ampliarInfo.js";
+import {pintarCarrito} from "./pintarCarrito.js";
 //LLAMANDO AL MODULO PINTAR
 let producto={}
-let articulosCarrito={}
 pintarTienda()
 
-//LLAMANDO AL MODULO ampliarInfo
+let modalInfoProducto
+//1. LLAMANDO AL MODULO ampliarInfo
 let contenedorTienda=document.getElementById("fila")
 contenedorTienda.addEventListener("click",function(event){
 
     if (event.target.classList.contains("btn")){
-    let modalInfoProducto = new bootstrap.Modal(document.getElementById('modalInfoProducto'))
+     modalInfoProducto = new bootstrap.Modal(document.getElementById('modalInfoProducto'))
     
-    ampliarInformacion(event)
+   producto = ampliarInformacion(event)
     modalInfoProducto.show()
     }
 })
 
 //DETECTAR LA ACCION DE AÑADIR AL CARRITO
 //CARRITO ES UN ARREGLO DE PRODUCTOS (ARREGLO DE OBJETOS)
+//2. RUTINA PINTAR CARRITO
+
 
 let carrito=[]
 
@@ -34,7 +37,7 @@ boton.addEventListener('click',function(evento){
     producto.cantidad=cantidad
 
     //3. AGREGAR EL PRODUCTO AL CARRITO
-    carrito.push(producto)
+    carrito.push(producto) //LLENANDO EL CARRITO
 
     //4.CALCULO LA SUMATORIA DE CANTIDADES
     let suma=0
@@ -42,13 +45,13 @@ boton.addEventListener('click',function(evento){
         suma=suma+Number(producto.cantidad)
     })
 
-    let capsula=document.getElementById("capsula")
-    capsula.textContent=suma
-    capsula.classList.remove("invisible")
-
-
-  
+    pintarCarrito(suma)
+    modalInfoProducto.hide()
 })
+
+
+
+//3. RUTINA LIMPIAR CARRITO
 
 let limpiarCarrito = document.getElementById("limpiar")
 limpiarCarrito.addEventListener("click",function(evento){
@@ -59,7 +62,60 @@ limpiarCarrito.addEventListener("click",function(evento){
     capsula.classList.add("invisible")
 })
 
-//LISTA DE ITEMS DEL CARRITO
+//4. VER RESUMEN DE VENTAS
 
+let botonCarrito = document.getElementById("botonCarrito")
+botonCarrito.addEventListener("click",function(evento){
 
+    let contenedor=document.getElementById("contenedorVenta")
+    let modalVenta = new bootstrap.Modal(document.getElementById('resumenCarrito'))
 
+    //BORRAR CONTENIDO HTML DE UNA SECCION
+    contenedor.innerHTML=""
+
+    //RECORRER EL CARRITO PARA PINTAR LOS PRODUCTOS EN LA FACTURA
+    carrito.forEach(function(producto){
+
+        //TRAVERSING
+        let fila = document.createElement("div")
+        fila.classList.add("row")
+
+        let columna1 = document.createElement("div")
+        fila.classList.add("col-12","col-md-4")
+        let columna2 = document.createElement("div")
+        fila.classList.add("col-12","col-md-8")
+
+        let foto=document.createElement("img")
+        foto.classList.add("img-fluid","w-100")
+        foto.src=producto.foto
+
+        let nombre=document.createElement("h4")
+        nombre.classList.add("text-center")
+        nombre.textContent=producto.nombre
+
+        let cantidad=document.createElement("h6")
+        cantidad.classList.add("text-center")
+        cantidad.textContent="Cantidad de articulos: "+producto.cantidad
+
+        let precio=document.createElement("h6")
+        precio.textContent = "Precio: " +producto.precio*producto.cantidad
+        
+        /*
+        let total=document.createElement("h6")
+        total.textContent= "total: "+ producto.precio
+        */
+        columna1.appendChild(foto)
+        fila.appendChild(columna1)
+        fila.appendChild(columna2)
+
+        columna2.appendChild(nombre)
+        columna2.appendChild(cantidad)
+        columna2.appendChild(precio)
+
+        contenedor.appendChild(fila)
+
+        
+    })
+    modalVenta.show()
+
+})

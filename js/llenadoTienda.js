@@ -114,6 +114,10 @@ productos.forEach(function(producto){
     titulo.classList.add("text-center")
     titulo.textContent=producto.nombre
 
+    let precio=document.createElement("h6")
+    precio.classList.add("text-center")
+    precio.textContent=producto.precio
+
     //CREANDO BOTON
     let boton=document.createElement("button")
     boton.setAttribute("type","button")
@@ -125,6 +129,7 @@ productos.forEach(function(producto){
 
     tarjeta.appendChild(foto)
     tarjeta.appendChild(titulo)
+    tarjeta.appendChild(precio)
     tarjeta.appendChild(boton)
     columna.appendChild(tarjeta)
     fila.appendChild(columna)
