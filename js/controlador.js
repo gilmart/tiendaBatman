@@ -2,6 +2,8 @@
 import { pintarTienda } from "./llenadoTienda.js";
 import {ampliarInformacion} from "./ampliarInfo.js";
 import {pintarCarrito} from "./pintarCarrito.js";
+
+
 //LLAMANDO AL MODULO PINTAR
 let producto={}
 pintarTienda()
@@ -44,12 +46,48 @@ boton.addEventListener('click',function(evento){
     carrito.forEach(function(producto){
         suma=suma+Number(producto.cantidad)
     })
+    
+    //
+     let totalP=0
+    carrito.forEach(function(producto){
+       totalP=+totalP +producto.precio*producto.cantidad
+       console.log(totalP)
+ 
+        let totalModal= document.getElementById("totalModal")
+        totalModal.classList.add("text-center")
+        totalModal.textContent= "Total: " +totalP
+
+       
+   })
+    //
 
     pintarCarrito(suma)
     modalInfoProducto.hide()
+    document.getElementById("cantidadProducto").value = "1";
+
+
 })
 
+//SUMAR TOTAL
+/*
+boton = document.getElementById("botonAdd")
+boton.addEventListener('click',function(evento){
+  
+    
+     console.log("SUMANDO TOTALES")
 
+         let totalP=0
+         carrito.forEach(function(producto){
+
+            totalP=+totalP +producto.precio*producto.cantidad
+            console.log(totalP)
+     
+        })
+         
+
+
+})
+*/
 
 //3. RUTINA LIMPIAR CARRITO
 
@@ -60,7 +98,15 @@ limpiarCarrito.addEventListener("click",function(evento){
     let capsula = document.getElementById("capsula")
     capsula.textContent=0
     capsula.classList.add("invisible")
+
+    modalInfoProducto.hide()
+
 })
+
+
+//5. 
+
+
 
 //4. VER RESUMEN DE VENTAS
 
@@ -98,7 +144,16 @@ botonCarrito.addEventListener("click",function(evento){
         cantidad.textContent="Cantidad de articulos: "+producto.cantidad
 
         let precio=document.createElement("h6")
-        precio.textContent = "Precio: " +producto.precio*producto.cantidad
+        precio.classList.add("text-center")
+        precio.textContent = "Precio: " +producto.precio
+
+        let subtotal= document.createElement("h5")
+        subtotal.classList.add("text-center")
+        subtotal.textContent= "Subtotal: " +producto.precio*producto.cantidad
+        
+      
+
+
         
         /*
         let total=document.createElement("h6")
@@ -111,10 +166,10 @@ botonCarrito.addEventListener("click",function(evento){
         columna2.appendChild(nombre)
         columna2.appendChild(cantidad)
         columna2.appendChild(precio)
+        columna2.appendChild(subtotal)
 
         contenedor.appendChild(fila)
-
-        
+    
     })
     modalVenta.show()
 

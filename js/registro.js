@@ -1,4 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"
+import {limpiarformulario} from "./pintarCarrito.js";
 
 let botonregistro = document.getElementById("botonRegistro")
 botonregistro.addEventListener("click", function(evento){
@@ -24,6 +25,6 @@ botonregistro.addEventListener("click", function(evento){
         console.log("uppss ")
     });
 
-    console.log(correo,password)
+    limpiarformulario()
 
 })

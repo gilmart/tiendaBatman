@@ -5,3 +5,6 @@ export function pintarCarrito(suma){
     capsula.classList.remove("invisible")
 
 }
+export function limpiarformulario(){
+    document.getElementById("formulario").reset();
+}
