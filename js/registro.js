@@ -2,6 +2,8 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import {limpiarformulario} from "./pintarCarrito.js";
 
 let botonregistro = document.getElementById("botonRegistro")
+let modalInformativo = new bootstrap.Modal(document.getElementById('modalInformativo'))
+
 botonregistro.addEventListener("click", function(evento){
 
     evento.preventDefault()
@@ -14,17 +16,33 @@ botonregistro.addEventListener("click", function(evento){
     .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        console.log(user)
         // ...
-        console.log("exito en el registro")
+
+        let textoinformativo=document.getElementById("informacionGeneral")
+        let formulario=document.getElementById("formulario")
+        formulario.reset()
+
+        textoinformativo.textContent="Exito registrando al usuario"
+        modalInformativo.show()
+        setTimeout(function(){
+            modalInformativo.hide()
+        },3000)
+
+        limpiarformulario()
     })
+
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
-        console.log("uppss ")
+
+        let textoinformativo=document.getElementById("informacionGeneral")
+        textoinformativo.textContent="Usuario no Válido: "+errorMessage
+        modalInformativo.show()
+
     });
 
-    limpiarformulario()
 
 })
 
