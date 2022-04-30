@@ -104,8 +104,32 @@
         <div class="container" id="contenedorVenta">
 
         </div>
-        <div><h6 id="totalModal"></h6></div>
+        <div><h4 id="totalModal"></h6></div>
       </div>
+
+         <!--CON BOTON SELECTED-->
+          <!--  
+         <select class="form-select-sm mb-3 ms-1 me-auto" id="moneda"  >
+          <option selected >Escoger</option>
+          <option value="1" id="valorpesos" class="pesos"> pesos</option>
+          <option value="2" id="valordolar" class="dolar" > Dolares</option>
+        </select> 
+      -->
+     
+      <div class="form-check" id="divisapesos">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="pesos" checked>
+        <label class="form-check-label" for="flexRadioDefault1">
+          pesos
+        </label>
+      </div>
+      <div class="form-check" id="divisadolar">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="dolar" >
+        <label class="form-check-label" for="flexRadioDefault2">
+          Dolares
+        </label>
+      </div>
+        <h5 id="resultado"> resultado: </h5>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary">Comprar</button>
@@ -119,7 +143,28 @@
     <footer>
     </footer>
 
+<!--
+<script>
 
+//function convertir(){
+
+let valor= document.getElementById("moneda").value
+let resultado=document.getElementById("resultado")
+let dolar=4000
+
+//if(valor==1){
+
+resultado.textContent= "pesos pesos"
+
+//}
+//else {
+ resultado.textContent= "dolar dolar"
+//}
+
+//}
+
+</script>
+-->
 
 
 
@@ -128,3 +173,18 @@
     <script src="js/controlador.js" type="module"></script>
 </body>
 </html>
+
+<!--
+
+  divisad.addEventListener("click", function(evento){
+
+                if( valord == dolar){
+                   console.log("funcniona el if de dolar")
+                }
+                else { 
+                    
+                    totalModal.textContent= "Total dolares $:" +totalP/dolar
+                }
+            })
+              
+-->

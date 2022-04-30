@@ -55,12 +55,68 @@ boton.addEventListener('click',function(evento){
  
         let totalModal= document.getElementById("totalModal")
         totalModal.classList.add("text-center")
-        totalModal.textContent= "Total: " +totalP
+        totalModal.textContent= "Total pesos $:" +totalP
 
-       
-   })
-    //
+    // CALCULAR DIVISAS
+    let dolar=4000
+    let valorp = document.getElementById("pesos")
+    let valord=document.getElementById("dolar")
+    let divisap=document.getElementById("divisapesos") 
+    let divisad= document.getElementById("divisadolar")   
 
+    carrito.forEach(function(producto){
+    divisap.addEventListener("click", function(evento){
+
+            if( valorp === pesos){
+                totalModal.textContent= "Total pesos $:" +totalP
+            }
+            else { 
+                    
+                totalModal.textContent= "Total dolares $:" +totalP/dolar
+            }
+
+    divisad.addEventListener("click", function(evento){
+
+                if( valord == dolar){
+                   console.log("funcniona el if de dolar")
+                }
+                else { 
+                    
+                    totalModal.textContent= "Total dolares $:" +totalP/dolar
+                }
+            })
+               
+        })
+    })
+
+
+})
+    
+    /*
+    .onclick = function(){myFunction()}
+      function myFunction(){
+        if(moneda  == 1){
+
+            console.log("pesos no funciona")
+
+            resultado.textContent= "pesos pesos"
+            
+            }
+            else if (moneda==2) {
+
+            console.log("dolares no funciona")
+             resultado.textContent= "dolar dolar1"
+            }
+            else {
+
+                console.log(" no funciona")
+                resultado.textContent="error..."
+            }
+              
+    
+        }
+    
+*/
     pintarCarrito(suma)
     modalInfoProducto.hide()
     document.getElementById("cantidadProducto").value = "1";
@@ -147,7 +203,7 @@ botonCarrito.addEventListener("click",function(evento){
         precio.classList.add("text-center")
         precio.textContent = "Precio: " +producto.precio
 
-        let subtotal= document.createElement("h5")
+        let subtotal= document.createElement("h6")
         subtotal.classList.add("text-center")
         subtotal.textContent= "Subtotal: " +producto.precio*producto.cantidad
         
