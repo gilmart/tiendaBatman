@@ -7,6 +7,9 @@ import {pintarCarrito} from "./pintarCarrito.js";
 //LLAMANDO AL MODULO PINTAR
 let producto={}
 pintarTienda()
+let contenedor=document.getElementById("contenedorVenta")
+
+
 
 let modalInfoProducto
 //1. LLAMANDO AL MODULO ampliarInfo
@@ -91,59 +94,12 @@ boton.addEventListener('click',function(evento){
 
 
 })
-    
-    /*
-    .onclick = function(){myFunction()}
-      function myFunction(){
-        if(moneda  == 1){
-
-            console.log("pesos no funciona")
-
-            resultado.textContent= "pesos pesos"
-            
-            }
-            else if (moneda==2) {
-
-            console.log("dolares no funciona")
-             resultado.textContent= "dolar dolar1"
-            }
-            else {
-
-                console.log(" no funciona")
-                resultado.textContent="error..."
-            }
-              
-    
-        }
-    
-*/
     pintarCarrito(suma)
     modalInfoProducto.hide()
     document.getElementById("cantidadProducto").value = "1";
-
-
 })
 
-//SUMAR TOTAL
-/*
-boton = document.getElementById("botonAdd")
-boton.addEventListener('click',function(evento){
-  
-    
-     console.log("SUMANDO TOTALES")
 
-         let totalP=0
-         carrito.forEach(function(producto){
-
-            totalP=+totalP +producto.precio*producto.cantidad
-            console.log(totalP)
-     
-        })
-         
-
-
-})
-*/
 
 //3. RUTINA LIMPIAR CARRITO
 
@@ -159,17 +115,12 @@ limpiarCarrito.addEventListener("click",function(evento){
 
 })
 
-
-//5. 
-
-
-
 //4. VER RESUMEN DE VENTAS
-
+//function resumenCarrito (){
 let botonCarrito = document.getElementById("botonCarrito")
 botonCarrito.addEventListener("click",function(evento){
 
-    let contenedor=document.getElementById("contenedorVenta")
+    //let contenedor=document.getElementById("contenedorVenta")
     let modalVenta = new bootstrap.Modal(document.getElementById('resumenCarrito'))
 
     //BORRAR CONTENIDO HTML DE UNA SECCION
@@ -207,14 +158,19 @@ botonCarrito.addEventListener("click",function(evento){
         subtotal.classList.add("text-center")
         subtotal.textContent= "Subtotal: " +producto.precio*producto.cantidad
         
-      
+        let id=document.createElement("h5")
+        id.classList.add("text-center")
+        id.textContent=producto.id
 
+        let eliminar = document.createElement("button")
+        eliminar.setAttribute("type" , "button")
+        eliminar.classList.add('btn','btn-danger', 'mx-5','borrar')
+        eliminar.textContent = "X"
+        eliminar.style.marginLeft="1rem"
+        eliminar.textContent="eliminar producto " 
+        eliminar.dataset.producto=producto
+        eliminar.addEventListener('click', eliminarProductoDelCarrito)
 
-        
-        /*
-        let total=document.createElement("h6")
-        total.textContent= "total: "+ producto.precio
-        */
         columna1.appendChild(foto)
         fila.appendChild(columna1)
         fila.appendChild(columna2)
@@ -223,10 +179,110 @@ botonCarrito.addEventListener("click",function(evento){
         columna2.appendChild(cantidad)
         columna2.appendChild(precio)
         columna2.appendChild(subtotal)
+        columna2.appendChild(id)
+        columna2.appendChild(eliminar)
 
         contenedor.appendChild(fila)
-    
+
+      
     })
-    modalVenta.show()
+
+    modalVenta.show()  
+
+    //modalVenta.show()
+})  
+function eliminarProductoDelCarrito(evento){
+    let id = evento.target.dataset.producto
+    carrito = carrito.filter((carritoId)=>{
+        return contenedorId !== id
+    })
+    modalInfoProducto.hide()
+}
+
+
+
+
+
+
+
+/*
+*/
+
+
+
+
+
+/* 
+
+function eliminarProductoDelCarrito (prodId){
+    let item = carrito.find((producto)=> producto.id === prodId)
+    let indice = carrito.indexOf(item)
+    carrito.splice(indice, 1)
+   // console.log("boton eliminar")
+}
+
+resumenCarrito()
+
+
+    //ELIMINAR PRODUCTO DE CARRITO
+
+
+    function eliminarProductoDelCarrito (evento){
+
+        let nombre = evento.target.dataset.producto
+        carrito = carrito.filter((carritoNombre)=>{
+            return carritoNombre !== nombre
+        })
+
+        console.log("click eliminar boton")
+        
+    }
+
+*/
+    
+    /*
+    .onclick = function(){myFunction()}
+      function myFunction(){
+        if(moneda  == 1){
+
+            console.log("pesos no funciona")
+
+            resultado.textContent= "pesos pesos"
+            
+            }
+            else if (moneda==2) {
+
+            console.log("dolares no funciona")
+             resultado.textContent= "dolar dolar1"
+            }
+            else {
+
+                console.log(" no funciona")
+                resultado.textContent="error..."
+            }
+              
+    
+        }
+    
+*/
+
+//SUMAR TOTAL
+/*
+boton = document.getElementById("botonAdd")
+boton.addEventListener('click',function(evento){
+  
+    
+     console.log("SUMANDO TOTALES")
+
+         let totalP=0
+         carrito.forEach(function(producto){
+
+            totalP=+totalP +producto.precio*producto.cantidad
+            console.log(totalP)
+     
+        })
+         
+
 
 })
+*/

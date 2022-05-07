@@ -3,61 +3,69 @@ export function pintarTienda(){
 // ARREGLO DE OBJETOS
 
 let productos = [
-    {nombre:"Lampara", 
-    precio: 450000, 
+    {id:0, nombre:"Lampara", precio: 450000, 
     foto:'img/producto1.jpg',
     descripcion:"Batimovil de la ultima pelicula de Batman original."   
     },
     
-    {nombre:"Poster",
+    {id:1,
+    nombre:"Poster",
     precio: 50000,
     foto: 'img/producto2.jpg',
     descripcion: "Puzzle 3D de la ultima pelicula de Batman original.",
     },
 
-    {nombre:"Cobija ",
+    {id:2,
+    nombre:"Cobija ",
     precio: 10000,
     foto: 'img/producto3.jpg',
     descripcion: "POP de la ultima pelicula de Batman original."
     },
 
-    {nombre:"Pelicula ",
+    {id:3,
+    nombre:"Pelicula ",
     precio: 20000,
     foto: 'img/producto4.jpg',
     descripcion: "PenDrive de la ultima pelicula de Batman original."
     },
 
-    {nombre:"Batimovil ",
+    {id:4,
+    nombre:"Batimovil ",
     precio: 15000,
     foto: 'img/producto5.jpg',
     descripcion: "Figura de la ultima pelicula de Batman original."
     },
 
-    {nombre:"Banner ",
+    {id:5,
+    nombre:"Banner ",
     precio: 35000,
     foto: 'img/producto6.jpg',
     descripcion: "Camiseta de la ultima pelicula de Batman original."
     },
 
-    {nombre:"Almohada ",
+    {id:6,
+    nombre:"Almohada ",
     precio: 450000,
     foto: 'img/producto7.jpg',
     descripcion: "Batimovil de la ultima pelicula de Batman original."
     },
 
-    {nombre:"Cubrecama ",
+    {id:7,
+    nombre:"Cubrecama ",
     precio: 50000,
     foto: 'img/producto8.jpg',
     descripcion: "Figura batman de la ultima pelicula de Batman original."
     },
 
-    {nombre:"Sudadera ",
+    {id:8,
+    nombre:"Sudadera ",
     precio: 90000,
     foto: 'img/producto9.png',
     descripcion: "Films de la ultima pelicula de Batman original."
     },
 
-    {nombre:"Reloj ",
+    {id:9,
+    nombre:"Reloj ",
     precio: 10000,
     foto: 'img/producto10.jpg',
     descripcion: "Film Blu Ray de la ultima pelicula de Batman original."
@@ -118,11 +126,17 @@ productos.forEach(function(producto){
     precio.classList.add("text-center")
     precio.textContent=producto.precio
 
+  
     //CREANDO BOTON
     let boton=document.createElement("button")
     boton.setAttribute("type","button")
     boton.classList.add("btn","btn-warning","mx-4","my-4")
     boton.textContent="ver producto"
+
+    let id=document.createElement("h5")
+    id.classList.add("text-center")
+    id.textContent=producto.id
+
 
     //2. ORDENAR LA ESTRUCTURA
     //PADRES E HIJOS
@@ -130,9 +144,11 @@ productos.forEach(function(producto){
     tarjeta.appendChild(foto)
     tarjeta.appendChild(titulo)
     tarjeta.appendChild(precio)
+    tarjeta.appendChild(id)
     tarjeta.appendChild(boton)
     columna.appendChild(tarjeta)
     fila.appendChild(columna)
+
 
 })
 
