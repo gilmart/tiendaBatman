@@ -170,6 +170,7 @@ botonCarrito.addEventListener("click",function(evento){
         eliminar.textContent="eliminar producto " 
         eliminar.dataset.producto=producto
         eliminar.addEventListener('click', eliminarProductoDelCarrito)
+        console.log(carrito)
 
         columna1.appendChild(foto)
         fila.appendChild(columna1)
@@ -192,21 +193,17 @@ botonCarrito.addEventListener("click",function(evento){
     //modalVenta.show()
 })  
 function eliminarProductoDelCarrito(evento){
-    let id = evento.target.dataset.producto
-    carrito = carrito.filter((carritoId)=>{
-        return contenedorId !== id
+   // let id = evento.target.dataset.producto¨
+   console.log(carrito)
+    let id= evento.target.parentElement.querySelector("h5").textContent
+    carrito = carrito.filter((producto)=>{
+        return (producto.id !== id) 
     })
-    modalInfoProducto.hide()
+  //  modalInfoProducto.hide() 
+console.log("holaaaa" +id)
+console.log(carrito)
+
 }
-
-
-
-
-
-
-
-/*
-*/
 
 
 
